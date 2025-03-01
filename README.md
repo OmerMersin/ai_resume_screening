@@ -9,7 +9,7 @@ A production-like Flask application that uses NLP to analyze resumes:
 ## Quick Start
 
 ```bash
-git clone https://github.com/YourUser/ai_resume_screening.git
+git clone https://github.com/OmerMersin/ai_resume_screening.git
 cd ai_resume_screening
 python -m venv venv
 source venv/bin/activate
