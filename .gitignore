@@ -1,0 +1,21 @@
+# Ignore Python Bytecode
+__pycache__/
+*.py[cod]
+
+# Ignore Virtual Environment
+venv/
+env/
+
+# Ignore System Files
+.DS_Store
+
+# Ignore Logs
+*.log
+
+# Ignore Environment Variables
+.env
+
+# Ignore Model Checkpoints (if any)
+*.h5
+*.tflite
+*.pkl

@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block title %}Analysis Results{% endblock %}
+
+{% block content %}
+<div class="card shadow">
+  <div class="card-header bg-success text-white">
+    <h4 class="mb-0">Screening Results</h4>
+  </div>
+  <div class="card-body">
+    
+    <!-- Match Score -->
+    <div class="mb-4">
+      <h5>Match Score</h5>
+      <div class="alert alert-info fs-5">
+        <strong>{{ score }}</strong> 
+        <br><small>(Range: -1 to +1, higher is better)</small>
+      </div>
+    </div>
+
+    <!-- Resume Preview -->
+    <div class="mb-4">
+      <h5>Resume Preview</h5>
+      <div class="border p-3 bg-light">
+        <pre style="white-space: pre-wrap; word-wrap: break-word;">
+{{ resume_preview }}...
+        </pre>
+      </div>
+    </div>
+
+    <!-- Named Entities -->
+    <div class="mb-4">
+      <h5>Extracted Entities</h5>
+      {% if entities %}
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Text</th>
+              <th>Label</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for ent_text, ent_label in entities %}
+            <tr>
+              <td>{{ ent_text }}</td>
+              <td><span class="badge bg-primary">{{ ent_label }}</span></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% else %}
+        <p>No entities found.</p>
+      {% endif %}
+    </div>
+
+    <!-- Skills Found -->
+    <div class="mb-4">
+      <h5>Detected Skills</h5>
+      {% if skills %}
+        <ul>
+          {% for skill in skills %}
+          <li>{{ skill }}</li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p>No recognized skills from our dictionary.</p>
+      {% endif %}
+    </div>
+
+    <!-- Summaries (Optional) -->
+    <div class="mb-4">
+      <h5>Job Description Summary</h5>
+      <div class="alert alert-secondary">
+        {{ job_summary }}
+      </div>
+    </div>
+    <div class="mb-4">
+      <h5>Resume Summary</h5>
+      <div class="alert alert-secondary">
+        {{ resume_summary }}
+      </div>
+    </div>
+
+    <!-- Back Link -->
+    <div class="text-end">
+      <a href="{{ url_for('index') }}" class="btn btn-secondary">Go Back</a>
+    </div>
+
+  </div><!-- card-body -->
+</div><!-- card -->
+{% endblock %}

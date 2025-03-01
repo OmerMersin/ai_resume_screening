@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Error{% endblock %}
+
+{% block content %}
+<div class="card shadow">
+  <div class="card-header bg-danger text-white">
+    <h4 class="mb-0">An Error Occurred</h4>
+  </div>
+  <div class="card-body">
+    <p>{{ message }}</p>
+    <a href="{{ url_for('index') }}" class="btn btn-outline-dark">Return Home</a>
+  </div>
+</div>
+{% endblock %}

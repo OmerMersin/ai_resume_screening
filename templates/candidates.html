@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}Candidates List{% endblock %}
+
+{% block content %}
+<div class="card shadow">
+  <div class="card-header bg-success text-white">
+    <h4 class="mb-0">Processed Candidates</h4>
+  </div>
+  <div class="card-body">
+    {% if candidates %}
+      <table class="table table-striped align-middle mt-3">
+        <thead class="table-light">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">File Name</th>
+            <th scope="col">Match Score</th>
+            <th scope="col" style="width: 120px;">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for c in candidates %}
+          <tr>
+            <th scope="row">{{ c.id }}</th>
+            <td>{{ c.filename }}</td>
+            <td>{{ c.score }}</td>
+            <td>
+              <a 
+                href="{{ url_for('candidate_detail', candidate_id=c.id) }}" 
+                class="btn btn-primary btn-sm"
+              >
+                View Details
+              </a>
+            </td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <div class="alert alert-warning" role="alert">
+        <h5 class="alert-heading">No Candidates Processed Yet</h5>
+        <p>
+          It looks like you haven't processed any resumes. 
+          Please <strong><a href="{{ url_for('index') }}" class="alert-link">go back</a></strong> to the home page and 
+          either upload a single resume or specify a folder containing PDF/TXT resumes.
+        </p>
+      </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="row">
+  
+  <!-- Single Resume Upload -->
+  <div class="col-md-6 mb-4">
+    <h3>Upload Single Resume</h3>
+    <form 
+      method="POST" 
+      action="{{ url_for('process') }}" 
+      enctype="multipart/form-data"
+    >
+      <!-- Resume upload -->
+      <div class="mb-3">
+        <label for="resume" class="form-label fw-bold">Resume (PDF or TXT)</label>
+        <input 
+          type="file" 
+          class="form-control" 
+          id="resume" 
+          name="resume" 
+          accept=".pdf,.txt" 
+          required
+        >
+      </div>
+
+      <!-- Job description -->
+      <div class="mb-3">
+        <label for="job_description" class="form-label fw-bold">Job Description</label>
+        <textarea 
+          class="form-control" 
+          id="job_description" 
+          name="job_description" 
+          rows="5" 
+          required
+        >Looking for a software engineer with Python, ML, NLP...
+        </textarea>
+      </div>
+
+      <!-- Submit button -->
+      <button type="submit" class="btn btn-success">
+        Upload &amp; Analyze
+      </button>
+    </form>
+  </div>
+
+  <!-- Folder Processing -->
+  <div class="col-md-6 mb-4">
+    <h3>Process Entire Folder</h3>
+    <form 
+      method="POST" 
+      action="{{ url_for('process_folder') }}"
+    >
+      <div class="mb-3">
+        <label for="folder_path" class="form-label fw-bold">Folder Path</label>
+        <input 
+          type="text" 
+          class="form-control" 
+          id="folder_path" 
+          name="folder_path" 
+          placeholder="/path/to/resumes" 
+          required
+        >
+      </div>
+
+      <div class="mb-3">
+        <label for="job_description" class="form-label fw-bold">Job Description</label>
+        <textarea 
+          class="form-control" 
+          id="job_description" 
+          name="job_description" 
+          rows="5" 
+          required
+        >Looking for a software engineer with Python, ML, NLP...
+        </textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary">
+        Process Folder
+      </button>
+    </form>
+  </div>
+
+</div>
+{% endblock %}
